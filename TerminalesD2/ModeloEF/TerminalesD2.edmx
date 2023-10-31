@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Obligatorio2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companias">
+          <Key>
+            <PropertyRef Name="NombreComp" />
+          </Key>
+          <Property Name="NombreComp" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terminales">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Viajes">
+          <Key>
+            <PropertyRef Name="CodigoInterno" />
+          </Key>
+          <Property Name="CodigoInterno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaPartida" Type="datetime" Nullable="false" />
+          <Property Name="FechaLlegada" Type="datetime" Nullable="false" />
+          <Property Name="Pasajeros" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Anden" Type="int" Nullable="false" />
+          <Property Name="NombreComp" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViajeTerminal">
+          <Key>
+            <PropertyRef Name="CodigoInterno" />
+            <PropertyRef Name="CodigoTerminal" />
+          </Key>
+          <Property Name="CodigoInterno" Type="int" Nullable="false" />
+          <Property Name="CodigoTerminal" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="NroParada" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Viajes__NombreCo__145C0A3F">
+          <End Role="Companias" Type="Self.Companias" Multiplicity="1" />
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="NombreComp" />
+            </Principal>
+            <Dependent Role="Viajes">
+              <PropertyRef Name="NombreComp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Viajes__Usuario__15502E78">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="Usuario" />
+            </Principal>
+            <Dependent Role="Viajes">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ViajeTerm__Codig__1BFD2C07">
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="1" />
+          <End Role="ViajeTerminal" Type="Self.ViajeTerminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viajes">
+              <PropertyRef Name="CodigoInterno" />
+            </Principal>
+            <Dependent Role="ViajeTerminal">
+              <PropertyRef Name="CodigoInterno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ViajeTerm__Codig__1CF15040">
+          <End Role="Terminales" Type="Self.Terminales" Multiplicity="1" />
+          <End Role="ViajeTerminal" Type="Self.ViajeTerminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminales">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="ViajeTerminal">
+              <PropertyRef Name="CodigoTerminal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AltaCompania" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="dir" Type="varchar" Mode="In" />
+          <Parameter Name="tel" Type="varchar" Mode="In" />
+          <Parameter Name="ret" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AltaTerminal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+          <Parameter Name="ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="pais" Type="varchar" Mode="In" />
+          <Parameter Name="ret" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="EliminarCompania" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="ret" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="EliminarTerminal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+          <Parameter Name="ret" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="Obligatorio2ModelStoreContainer">
+          <EntitySet Name="Companias" EntityType="Self.Companias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terminales" EntityType="Self.Terminales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Viajes" EntityType="Self.Viajes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViajeTerminal" EntityType="Self.ViajeTerminal" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Viajes__NombreCo__145C0A3F" Association="Self.FK__Viajes__NombreCo__145C0A3F">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Viajes" EntitySet="Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Viajes__Usuario__15502E78" Association="Self.FK__Viajes__Usuario__15502E78">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Viajes" EntitySet="Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ViajeTerm__Codig__1BFD2C07" Association="Self.FK__ViajeTerm__Codig__1BFD2C07">
+            <End Role="Viajes" EntitySet="Viajes" />
+            <End Role="ViajeTerminal" EntitySet="ViajeTerminal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ViajeTerm__Codig__1CF15040" Association="Self.FK__ViajeTerm__Codig__1CF15040">
+            <End Role="Terminales" EntitySet="Terminales" />
+            <End Role="ViajeTerminal" EntitySet="ViajeTerminal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Obligatorio2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Companias">
+          <Key>
+            <PropertyRef Name="NombreComp" />
+          </Key>
+          <Property Name="NombreComp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terminales">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Viajes">
+          <Key>
+            <PropertyRef Name="CodigoInterno" />
+          </Key>
+          <Property Name="CodigoInterno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaPartida" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaLlegada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Pasajeros" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Anden" Type="Int32" Nullable="false" />
+          <Property Name="NombreComp" MaxLength="50" FixedLength="false" Unicode="false" Type="String" Nullable="false" />
+          <Property Name="Usuario" MaxLength="8" FixedLength="false" Unicode="false" Type="String" Nullable="false" />
+          <NavigationProperty Name="Companias" Relationship="Self.FK__Viajes__NombreCo__145C0A3F" FromRole="Viajes" ToRole="Companias" />
+          <NavigationProperty Name="Empleados" Relationship="Obligatorio2Model.FK__Viajes__Usuario__15502E78" FromRole="Viajes" ToRole="Empleados" />
+          <NavigationProperty Name="ViajeTerminal" Relationship="Self.FK__ViajeTerm__Codig__1BFD2C07" FromRole="Viajes" ToRole="ViajeTerminal" />
+        </EntityType>
+        <EntityType Name="ViajeTerminal">
+          <Key>
+            <PropertyRef Name="CodigoInterno" />
+            <PropertyRef Name="CodigoTerminal" />
+          </Key>
+          <Property Name="CodigoInterno" Type="Int32" Nullable="false" />
+          <Property Name="CodigoTerminal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NroParada" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Terminales" Relationship="Self.FK__ViajeTerm__Codig__1CF15040" FromRole="ViajeTerminal" ToRole="Terminales" />
+        </EntityType>
+        <Association Name="FK__Viajes__NombreCo__145C0A3F">
+          <End Role="Companias" Type="Self.Companias" Multiplicity="1" />
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="NombreComp" />
+            </Principal>
+            <Dependent Role="Viajes">
+              <PropertyRef Name="NombreComp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Viajes__Usuario__15502E78">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="Usuario" />
+            </Principal>
+            <Dependent Role="Viajes">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ViajeTerm__Codig__1CF15040">
+          <End Role="Terminales" Type="Self.Terminales" Multiplicity="1" />
+          <End Role="ViajeTerminal" Type="Self.ViajeTerminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminales">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="ViajeTerminal">
+              <PropertyRef Name="CodigoTerminal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ViajeTerm__Codig__1BFD2C07">
+          <End Role="Viajes" Type="Self.Viajes" Multiplicity="1" />
+          <End Role="ViajeTerminal" Type="Self.ViajeTerminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viajes">
+              <PropertyRef Name="CodigoInterno" />
+            </Principal>
+            <Dependent Role="ViajeTerminal">
+              <PropertyRef Name="CodigoInterno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Obligatorio2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companias" EntityType="Self.Companias" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Terminales" EntityType="Self.Terminales" />
+          <EntitySet Name="Viajes" EntityType="Self.Viajes" />
+          <EntitySet Name="ViajeTerminal" EntityType="Self.ViajeTerminal" />
+          <AssociationSet Name="FK__Viajes__NombreCo__145C0A3F" Association="Self.FK__Viajes__NombreCo__145C0A3F">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Viajes" EntitySet="Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Viajes__Usuario__15502E78" Association="Self.FK__Viajes__Usuario__15502E78">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Viajes" EntitySet="Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ViajeTerm__Codig__1CF15040" Association="Self.FK__ViajeTerm__Codig__1CF15040">
+            <End Role="Terminales" EntitySet="Terminales" />
+            <End Role="ViajeTerminal" EntitySet="ViajeTerminal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ViajeTerm__Codig__1BFD2C07" Association="Self.FK__ViajeTerm__Codig__1BFD2C07">
+            <End Role="Viajes" EntitySet="Viajes" />
+            <End Role="ViajeTerminal" EntitySet="ViajeTerminal" />
+          </AssociationSet>
+          <FunctionImport Name="AltaCompania">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="dir" Mode="In" Type="String" />
+            <Parameter Name="tel" Mode="In" Type="String" />
+            <Parameter Name="ret" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AltaTerminal">
+            <Parameter Name="cod" Mode="In" Type="String" />
+            <Parameter Name="ciudad" Mode="In" Type="String" />
+            <Parameter Name="pais" Mode="In" Type="String" />
+            <Parameter Name="ret" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarCompania">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ret" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarTerminal">
+            <Parameter Name="cod" Mode="In" Type="String" />
+            <Parameter Name="ret" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Obligatorio2ModelStoreContainer" CdmEntityContainer="Obligatorio2Entities">
+          <EntitySetMapping Name="Companias">
+            <EntityTypeMapping TypeName="Obligatorio2Model.Companias">
+              <MappingFragment StoreEntitySet="Companias">
+                <ScalarProperty Name="NombreComp" ColumnName="NombreComp" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="Obligatorio2Model.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terminales">
+            <EntityTypeMapping TypeName="Obligatorio2Model.Terminales">
+              <MappingFragment StoreEntitySet="Terminales">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Viajes">
+            <EntityTypeMapping TypeName="Obligatorio2Model.Viajes">
+              <MappingFragment StoreEntitySet="Viajes">
+                <ScalarProperty Name="CodigoInterno" ColumnName="CodigoInterno" />
+                <ScalarProperty Name="FechaPartida" ColumnName="FechaPartida" />
+                <ScalarProperty Name="FechaLlegada" ColumnName="FechaLlegada" />
+                <ScalarProperty Name="Pasajeros" ColumnName="Pasajeros" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Anden" ColumnName="Anden" />
+                <ScalarProperty Name="NombreComp" ColumnName="NombreComp" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViajeTerminal">
+            <EntityTypeMapping TypeName="Obligatorio2Model.ViajeTerminal">
+              <MappingFragment StoreEntitySet="ViajeTerminal">
+                <ScalarProperty Name="CodigoInterno" ColumnName="CodigoInterno" />
+                <ScalarProperty Name="CodigoTerminal" ColumnName="CodigoTerminal" />
+                <ScalarProperty Name="NroParada" ColumnName="NroParada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AltaCompania" FunctionName="Obligatorio2Model.Store.AltaCompania" />
+          <FunctionImportMapping FunctionImportName="AltaTerminal" FunctionName="Obligatorio2Model.Store.AltaTerminal" />
+          <FunctionImportMapping FunctionImportName="EliminarCompania" FunctionName="Obligatorio2Model.Store.EliminarCompania" />
+          <FunctionImportMapping FunctionImportName="EliminarTerminal" FunctionName="Obligatorio2Model.Store.EliminarTerminal" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

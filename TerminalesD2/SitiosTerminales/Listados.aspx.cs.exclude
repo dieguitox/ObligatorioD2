@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Logica;
+using EntidadesCompartidas;
+
+
+public partial class Listados : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            Session["ViajesMes"] = FabricaLogica.GetLogicaViajes().ListadoViajesDelMes();
+            Session["Filtros"] = Session["ViajesMes"];
+            CargarDdls();
+        }
+    }
+
+    protected void GVViajes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GVViajes.PageIndex = e.NewPageIndex;
+        MostrarEnGrilla((List<Viajes>)Session["Filtros"]);
+        Page.MaintainScrollPositionOnPostBack = true;
+    }
+
+    private void CargarDdls()
+    {
+        try
+        {
+            var Destino = (from unD in (List<Viajes>)Session["ViajesMes"]
+                           select unD.Lista.Last().CodigoTerminal.Ciudad).ToList();
+
+            Session["Compania"] = FabricaLogica.GetLogicaCompania().ListarCompanias();
+            ddlCompania.DataSource = Session["Compania"];
+            ddlCompania.DataTextField = "Nombre";
+            ddlCompania.DataBind();
+            ddlCompania.Items.Insert(0, "Seleccionar");
+
+            ddlDestino.DataSource = Destino;
+            ddlDestino.DataBind();
+            ddlDestino.Items.Insert(0, "Seleccionar");
+
+            MostrarEnGrilla((List<Viajes>)Session["ViajesMes"]);
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            ddlCompania.SelectedIndex = -1;
+            ddlDestino.SelectedIndex = -1;
+            FechaCalendar.Text = DateTime.Today.ToShortDateString();
+            Session["Filtros"] = Session["ViajesMes"];
+            MostrarEnGrilla((List<Viajes>)Session["Filtros"]);
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnFiltro_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Session["Filtros"] = (List<Viajes>)Session["ViajesMes"];
+            if (ddlCompania.SelectedIndex != 0)
+            {
+                Session["Filtros"] = (from unV in (List<Viajes>)Session["Filtros"]
+                                 where unV.Comp.Nombre == ddlCompania.SelectedValue
+                                 select unV).ToList();
+            }
+
+            if (ddlDestino.SelectedIndex != 0)
+            {
+                Session["Filtros"] = (from unV in (List<Viajes>)Session["Filtros"]
+                                 where unV.Lista.Last().CodigoTerminal.Ciudad == ddlDestino.SelectedValue
+                                 select unV).ToList();
+            }
+
+            if (!(string.IsNullOrWhiteSpace(FechaCalendar.Text)))
+            {
+                Session["Filtros"] = (from unV in (List<Viajes>)Session["Filtros"]
+                                 where unV.FechaPartida.Date == Convert.ToDateTime(FechaCalendar.Text)
+                                 select unV).ToList();
+            }
+            MostrarEnGrilla((List<Viajes>)Session["Filtros"]);
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+
+    private void MostrarEnGrilla(List<Viajes> listadoViajes)
+    {
+        var listadoViajesGrilla = (from unV in listadoViajes
+                                   select new
+                                   {
+                                       Viaje = unV.CodInterno,
+                                       FechaHora = unV.FechaPartida,
+                                       Compañía = unV.Comp.Nombre,
+                                       Destino = unV.Lista.Last().CodigoTerminal.Ciudad
+                                   }).ToList();
+        GVViajes.DataSource = listadoViajesGrilla;
+        GVViajes.DataBind();
+    }
+}

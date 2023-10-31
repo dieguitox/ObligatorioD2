@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using EntidadesCompartidas;
+using Logica;
+using System.Drawing;
+using System.Web.UI.WebControls;
+
+public partial class AltaEmpleados : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            LimpiarDatos();
+        }
+    }
+
+    private void LimpiarDatos()
+    {
+        txtUsu.Text = "";
+        txtNombre.Text = "";
+        txtPass.Text = "";
+        lblError.Text = "";
+    }
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        LimpiarDatos();
+    }
+
+    protected void btnCrear_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Empleado unEmp = FabricaLogica.GetLogicaEmpleado().BuscarEmpleado(txtUsu.Text);
+
+            if (unEmp == null)
+            {
+                unEmp = new Empleado(txtUsu.Text.Trim(), txtPass.Text.Trim(), txtNombre.Text.Trim());
+                FabricaLogica.GetLogicaEmpleado().AltaEmpleado(unEmp);
+
+                LimpiarDatos();
+
+                lblError.ForeColor = Color.Green;
+                lblError.Text = "Empleado ingresado correctamente";
+            }
+            else
+            {
+                lblError.ForeColor = Color.Blue;
+                lblError.Text = "El usuario ya fue usado";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Text = ex.Message;
+        }
+    }
+}

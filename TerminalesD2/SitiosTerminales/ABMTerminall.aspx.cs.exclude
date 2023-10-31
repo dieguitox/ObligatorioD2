@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Drawing;
+
+public partial class ABMTerminal: System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            LimpiarDatos();
+
+            Session["Internacional"] = null; 
+        }
+
+    }
+
+    private void LimpiarDatos()
+    {
+        txtCodigo.Text = "";
+        txtCodigo.Enabled = true;
+        txtCiudad.Text = "";
+        txtCiudad.Enabled = false;
+        txtPais.Text = "";
+        txtPais.Enabled = false;
+
+        btnAlta.Enabled = false;
+        btnModificar.Enabled = false;
+        btnEliminar.Enabled = false;
+        btnBuscar.Enabled = true;
+
+        Session["Internacional"] = null;
+        lblError.Text = "";
+    }
+
+    private void ActivoBotones(bool esAlta = true)
+    {
+        txtCodigo.Enabled = esAlta;
+        txtCiudad.Enabled = true;
+        txtPais.Enabled = true;
+
+        btnAlta.Enabled = esAlta;
+        btnModificar.Enabled = !esAlta;
+        btnEliminar.Enabled = !esAlta;
+        btnBuscar.Enabled = false;
+    }
+
+    protected void btnBuscar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Session["Internacional"] = FabricaLogica.GetLogicaTerminales().BuscarTerminalesActivas(txtCodigo.Text);
+            if (Session["Internacional"] != null)
+            {
+
+                if (Session["Internacional"] is Internacional)
+                {
+                    txtCodigo.Text = ((Internacional)Session["Internacional"]).Codigo;
+                    txtCiudad.Text = ((Internacional)Session["Internacional"]).Ciudad;
+                    txtPais.Text = ((Internacional)Session["Internacional"]).Pais;
+
+                    ActivoBotones(false);
+
+                }
+                else
+                {
+                    lblError.ForeColor = Color.Purple;
+                    lblError.Text = "La Terminal es Nacional";
+                }
+            }
+            else
+            {
+                ActivoBotones();
+            }
+        }
+        catch (Exception ex)
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnAlta_Click1(object sender, EventArgs e)
+    {
+        try
+        {
+            Internacional inter = new Internacional(txtCodigo.Text, txtCiudad.Text, txtPais.Text);
+            FabricaLogica.GetLogicaTerminales().AltaTerminal(inter);
+
+            lblError.ForeColor = Color.Blue;
+            lblError.Text = "Alta con éxito";
+
+            LimpiarDatos();
+        }
+        catch (Exception ex)
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnLimpiar_Click1(object sender, EventArgs e)
+    {
+        LimpiarDatos();
+    }
+
+    protected void btnModificar_Click1(object sender, EventArgs e)
+    {
+        try
+        {
+
+            ((Internacional)Session["Internacional"]).Codigo = txtCodigo.Text.Trim();
+            ((Internacional)Session["Internacional"]).Ciudad = txtCiudad.Text.Trim();
+            ((Internacional)Session["Internacional"]).Pais = txtPais.Text.Trim();
+
+            FabricaLogica.GetLogicaTerminales().ModificarTerminal((Internacional)Session["Internacional"]);
+
+            lblError.ForeColor = Color.Blue;
+            lblError.Text = "Modificación con éxito";
+
+            LimpiarDatos();
+
+        }
+        catch (Exception ex)
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Text = ex.Message;
+        }
+    }
+
+    protected void btnEliminar_Click1(object sender, EventArgs e)
+    {
+        try
+        {
+            FabricaLogica.GetLogicaTerminales().EliminarTerminal(((Internacional)Session["Internacional"]));
+
+            lblError.ForeColor = Color.Blue;
+            lblError.Text = "Eliminación con éxito";
+
+            LimpiarDatos();
+        }
+        catch (Exception ex)
+        {
+            lblError.ForeColor = Color.Red;
+            lblError.Text = ex.Message;
+        }
+
+    }
+}
