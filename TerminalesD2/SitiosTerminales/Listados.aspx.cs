@@ -11,7 +11,7 @@ public partial class Listados : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsPostBack) 
         {
 
             Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];

@@ -18,3 +18,13 @@ C:\Users\Usuario\Source\Repos\dieguitox\ObligatorioD2\TerminalesD2\ModeloEF\bin\
 C:\Users\Usuario\Source\Repos\dieguitox\ObligatorioD2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Source\Repos\dieguitox\ObligatorioD2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.dll
 C:\Users\Usuario\Source\Repos\dieguitox\ObligatorioD2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.dll.config
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csprojResolveAssemblyReference.cache
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.pdb
