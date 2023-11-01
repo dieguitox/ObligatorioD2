@@ -78,13 +78,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style13" colspan="2" dir="auto" aria-orientation="vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:GridView ID="GVListadoPartidas" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="16px" AllowPaging="True" PageSize="8" OnPageIndexChanging="GVListadoPartidas_PageIndexChanging" Width="662px" >
+                        <asp:GridView ID="GVListadoPartidas" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="16px" AllowPaging="True" PageSize="8" OnPageIndexChanging="GVListadoPartidas_PageIndexChanging" Width="662px" OnSelectedIndexChanged="GVListadoPartidas_SelectedIndexChanged" >
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="NumeroDeViaje" HeaderText="Viaje" />
                                 <asp:BoundField DataField="FechaHora" HeaderText="Fecha de salida" />
                                 <asp:BoundField DataField="AndenSalida" HeaderText="Anden" />
                                 <asp:BoundField DataField="Destino" HeaderText="Destino" />
+                            	<asp:CommandField SelectText="Ver Terminales" ShowSelectButton="True" />
                             </Columns>
                             <EditRowStyle BackColor="#7C6F57" />
                             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -99,6 +100,17 @@
                         </asp:GridView>
                     </td>
                 </tr>
+            <tfoot>
+                
+            	<tr>
+					<td>
+						<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<asp:ListBox ID="LbTerminales" runat="server"></asp:ListBox>
+					</td>
+				</tr>
+                
+            </tfoot>
             </table>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     

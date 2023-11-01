@@ -71,7 +71,7 @@ public partial class Listados : System.Web.UI.Page
             ddlCompania.SelectedIndex = -1;
             ddlDestino.SelectedIndex = -1;
             FechaCalendar.Text = DateTime.Today.ToShortDateString();
-            Session["Filtros"] = ObContexto.Viajes;
+            Session["Filtros"] = ObContexto.Viajes.ToList();
             MostrarEnGrilla((List<Viajes>)Session["Filtros"]);
         }
         catch (Exception ex)

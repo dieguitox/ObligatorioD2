@@ -27,3 +27,15 @@ C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\Model
 C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.dll
 C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.pdb
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.dll.config
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.dll
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\ModeloEF.pdb
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.dll
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.xml
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csproj.AssemblyReference.cache
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csproj.CoreCompileInputs.cache
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csproj.CopyComplete
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.dll
+C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.pdb
