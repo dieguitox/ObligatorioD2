@@ -17,6 +17,7 @@ public partial class _Default : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
+                GVTerminales.Visible = false;
                 GeneroContext();
                 Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
 
@@ -93,11 +94,8 @@ public partial class _Default : System.Web.UI.Page
         Page.MaintainScrollPositionOnPostBack = true;
     }
 
-
-
     protected void GVListadoPartidas_SelectedIndexChanged(object sender, EventArgs e)
     {
-        LbTerminales.Items.Clear();
         try
         {
             //obtengo fuente de datos
@@ -111,11 +109,20 @@ public partial class _Default : System.Web.UI.Page
 
             //ENSAYO DE LINQ LAMDA EXPRESSIONS
             var vt = ObContexto.ViajeTerminal.Where(v => v.CodigoInterno == codViaje).ToList();
-            foreach (var t in vt)
-            {
-                LbTerminales.Items.Add(t.Terminales.Ciudad);
-            }
-            LbTerminales.DataBind();
+            GVTerminales.Visible = true;    
+            GVTerminales.DataSource = (from unV in vt
+                                       select new
+                                       {
+                                           Parada = unV.NroParada,
+                                           Ciudad = unV.Terminales.Ciudad,
+                                           Pais = unV.Terminales.Pais
+                                       }).ToList();
+            GVTerminales.DataBind();
+            //foreach (var t in vt)
+            //{
+            //    LbTerminales.Items.Add(t.Terminales.Ciudad);
+            //}
+            //LbTerminales.DataBind();
         }
         catch (Exception ex)
         {

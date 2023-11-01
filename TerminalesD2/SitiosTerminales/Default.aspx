@@ -100,20 +100,34 @@
                         </asp:GridView>
                     </td>
                 </tr>
-            <tfoot>
-                
-            	<tr>
-					<td>
-						<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<asp:ListBox ID="LbTerminales" runat="server"></asp:ListBox>
-					</td>
-				</tr>
-                
-            </tfoot>
             </table>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
+            <table class="auto-style24" style="font-family: verdana, Geneva, Tahoma, sans-serif">
+                <tr>
+                    <td class="auto-style13" colspan="2" dir="auto" aria-orientation="vertical">
+
+                    	<asp:GridView ID="GVTerminales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Vertical" Height="16px" AllowPaging="True" PageSize="8" Width="662px" AutoGenerateColumns="False">
+							<AlternatingRowStyle BackColor="White" />
+							<Columns>
+								<asp:BoundField HeaderText="Nro Parada" />
+								<asp:BoundField HeaderText="Ciudad" />
+								<asp:BoundField HeaderText="País" />
+							</Columns>
+							<EditRowStyle BackColor="#7C6F57" />
+							<FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+							<HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+							<PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+							<RowStyle BackColor="#E3EAEB" />
+							<SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+							<SortedAscendingCellStyle BackColor="#F8FAFA" />
+							<SortedAscendingHeaderStyle BackColor="#246B61" />
+							<SortedDescendingCellStyle BackColor="#D4DFE1" />
+							<SortedDescendingHeaderStyle BackColor="#15524A" />
+						</asp:GridView>
+
+                    </td>
+                </tr>
+            </table>
     </div>
     </form>
 </body>
