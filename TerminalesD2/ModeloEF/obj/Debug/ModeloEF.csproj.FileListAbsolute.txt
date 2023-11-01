@@ -39,3 +39,4 @@ C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\M
 C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csproj.CopyComplete
 C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.dll
 C:\Users\Eddy\Source\Repos\ObligatorioDisenio2\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño II\TerminalesD2\ModeloEF\obj\Debug\ModeloEF.csprojResolveAssemblyReference.cache
