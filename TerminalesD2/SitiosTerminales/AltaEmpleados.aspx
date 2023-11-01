@@ -84,7 +84,7 @@
                         <tr>
                             <td class="auto-style50">Contraseña:</td>
                             <td class="auto-style45">
-                                <asp:TextBox ID="txtPass" runat="server" Width="310px" Font-Names="Verdana"></asp:TextBox>
+                                <asp:TextBox ID="txtPass" runat="server" Width="310px" Font-Names="Verdana" TextMode="Password"></asp:TextBox>
                             </td>
                             <td class="auto-style48">
                                 &nbsp;</td>
