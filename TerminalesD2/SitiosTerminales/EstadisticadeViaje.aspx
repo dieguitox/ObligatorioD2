@@ -27,7 +27,7 @@
 
     <body>
     <div class="auto-style38">
-        <div class="auto-style40" style="font-family: VErdana, Geneva, Tahoma, sans-serif">
+        <div class="auto-style40" style="font-family: Verdana, Geneva, Tahoma, sans-serif">
             <div class="auto-style32" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: xx-large; color: #FFFFFF; background-color: #006666; text-align: center; text-decoration: underline">
                 Estadisticas de Viajes</div>
     <p>
