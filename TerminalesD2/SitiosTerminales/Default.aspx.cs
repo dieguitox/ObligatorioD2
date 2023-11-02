@@ -25,16 +25,13 @@ public partial class _Default : System.Web.UI.Page
                 var listadoViajes = ObContexto.Viajes.Where(x => x.FechaPartida > DateTime.Now).ToList();
 
                 var listadoVM = (from unV in listadoViajes
-                                 //from unaT in unV.ViajeTerminal
                                  orderby unV.FechaPartida
-                                 
                                  select new
                                  {
                                      NumeroDeViaje = unV.CodigoInterno,
                                      FechaHora = unV.FechaPartida,
                                      AndenSalida = unV.Anden,
                                      Destino = unV.ViajeTerminal.OrderByDescending(x => x.NroParada).First().Terminales.Ciudad
-                                     //Destino = unV.ViajeTerminal.OrderByDescending(x => x.NroParada).FirstOrDefault().Terminales.Ciudad
                                  }).ToList<object>();
 
                 Session["ListaViajes"] = listadoVM;
@@ -53,8 +50,6 @@ public partial class _Default : System.Web.UI.Page
         try
         {
             Obligatorio2Entities ObContexto = new Obligatorio2Entities();
-
-
             Session["Contexto"] = ObContexto;
         }
         catch (Exception ex)
@@ -69,7 +64,6 @@ public partial class _Default : System.Web.UI.Page
         try
         {
             Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
-
             Empleados unEmp = ObContexto.Empleados.FirstOrDefault(x => x.Usuario == txtUsu.Text.Trim() && x.Pass == txtPass.Text.Trim());
 
             if (unEmp != null)
@@ -92,37 +86,29 @@ public partial class _Default : System.Web.UI.Page
         GVListadoPartidas.DataSource = Session["ListaViajes"];
         GVListadoPartidas.DataBind();
         Page.MaintainScrollPositionOnPostBack = true;
+        GVTerminales.Visible = false;
+        GVListadoPartidas.SelectedIndex = -1;
     }
 
     protected void GVListadoPartidas_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
         {
-            //obtengo fuente de datos
             Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
-
             int codViaje = Convert.ToInt32(GVListadoPartidas.SelectedRow.Cells[0].Text);
 
-            //Ensayo de QUERY SYMTAX
-            //List<string> ciudades = ()
+            var lista = (from unV in ObContexto.ViajeTerminal.Where(v => v.CodigoInterno == codViaje).OrderBy(x => x.NroParada).ToList()
+                         select new
+                         {
+                             NroParada = unV.NroParada,
+                             Ciudad = unV.Terminales.Ciudad,
+                             Pais = unV.Terminales.Pais
+                         }).ToList();
 
-
-            //ENSAYO DE LINQ LAMDA EXPRESSIONS
-            var vt = ObContexto.ViajeTerminal.Where(v => v.CodigoInterno == codViaje).ToList();
-            GVTerminales.Visible = true;    
-            GVTerminales.DataSource = (from unV in vt
-                                       select new
-                                       {
-                                           Parada = unV.NroParada,
-                                           Ciudad = unV.Terminales.Ciudad,
-                                           Pais = unV.Terminales.Pais
-                                       }).ToList();
+            GVTerminales.Visible = true;
+            GVTerminales.DataSource = lista;
             GVTerminales.DataBind();
-            //foreach (var t in vt)
-            //{
-            //    LbTerminales.Items.Add(t.Terminales.Ciudad);
-            //}
-            //LbTerminales.DataBind();
+
         }
         catch (Exception ex)
         {

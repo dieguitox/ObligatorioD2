@@ -29,6 +29,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5-<asp:LinkButton ID="LinkButton6" runat="server" PostBackUrl="~/Listados.aspx">Listados de Viajes</asp:LinkButton>
     
 </body>
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6-<asp:LinkButton ID="LinkButton7" runat="server" PostBackUrl="~/EstadisticadeViaje.aspx">Estadistica de Viajes</asp:LinkButton>
+    
     </div>
 <br />
     <br />

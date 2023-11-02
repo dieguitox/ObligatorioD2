@@ -42,9 +42,16 @@
         width: 179px;
         height: 38px;
     }
+        .auto-style25 {
+            height: 22px;
+        }
+        .auto-style26 {
+            height: 38px;
+            width: 82px;
+        }
     </style>
 </head>
-<body style="width: 1241px; height: 551px">
+<body style="width: 1246px; height: 768px">
     <form id="form1" runat="server">
     <div>
     
@@ -54,30 +61,30 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         &nbsp;&nbsp;&nbsp;&nbsp;<table class="auto-style24" style="font-family: verdana, Geneva, Tahoma, sans-serif">
                 <tr>
-                    <td class="auto-style22" aria-orientation="vertical">Nombre de Usuario:</td>
-                    <td class="auto-style15" aria-orientation="vertical">
+                    <td class="auto-style22" aria-orientation="vertical" colspan="2">Nombre de Usuario:</td>
+                    <td class="auto-style15" aria-orientation="vertical" colspan="2">
                         <asp:TextBox ID="txtUsu" runat="server" Width="141px" Font-Names="Verdana"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style23" aria-orientation="vertical">Contraseña:</td>
-                    <td class="auto-style17" aria-orientation="vertical">
+                    <td class="auto-style23" aria-orientation="vertical" colspan="2">Contraseña:</td>
+                    <td class="auto-style17" aria-orientation="vertical" colspan="2">
                         <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="141px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style19" aria-orientation="vertical"></td>
-                    <td class="auto-style18" aria-orientation="vertical">
+                    <td class="auto-style19" aria-orientation="vertical" colspan="2"></td>
+                    <td class="auto-style18" aria-orientation="vertical" colspan="2">
                         <asp:Button ID="btnInicioSession" runat="server" Text="Iniciar Sesión" OnClick="btnInicioSession_Click" BackColor="#339966" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Names="Verdana" ForeColor="White" Width="149px" />
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" aria-orientation="vertical">
+                    <td colspan="4" aria-orientation="vertical" class="auto-style25">
                         <asp:Label ID="lblError" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style13" colspan="2" dir="auto" aria-orientation="vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style13" colspan="4" dir="auto" aria-orientation="vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:GridView ID="GVListadoPartidas" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="16px" AllowPaging="True" PageSize="8" OnPageIndexChanging="GVListadoPartidas_PageIndexChanging" Width="662px" OnSelectedIndexChanged="GVListadoPartidas_SelectedIndexChanged" >
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
@@ -100,18 +107,17 @@
                         </asp:GridView>
                     </td>
                 </tr>
-            </table>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <table class="auto-style24" style="font-family: verdana, Geneva, Tahoma, sans-serif">
                 <tr>
-                    <td class="auto-style13" colspan="2" dir="auto" aria-orientation="vertical">
+                    <td class="auto-style26" dir="ltr" aria-orientation="vertical">&nbsp;&nbsp;
+                    </td>
+                    <td class="auto-style13" colspan="2" dir="ltr" aria-orientation="vertical">
 
-                    	<asp:GridView ID="GVTerminales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Vertical" Height="16px" AllowPaging="True" PageSize="8" Width="662px" AutoGenerateColumns="False">
+                    	<asp:GridView ID="GVTerminales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Vertical" Height="54px" AllowPaging="True" PageSize="8" Width="353px" AutoGenerateColumns="False">
 							<AlternatingRowStyle BackColor="White" />
 							<Columns>
-								<asp:BoundField HeaderText="Nro Parada" />
-								<asp:BoundField HeaderText="Ciudad" />
-								<asp:BoundField HeaderText="País" />
+								<asp:BoundField HeaderText="Nro Parada" DataField="NroParada" />
+								<asp:BoundField HeaderText="Ciudad" DataField="Ciudad" />
+								<asp:BoundField HeaderText="País" DataField="Pais" />
 							</Columns>
 							<EditRowStyle BackColor="#7C6F57" />
 							<FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -126,9 +132,11 @@
 						</asp:GridView>
 
                     </td>
+                    <td class="auto-style13" dir="ltr" aria-orientation="vertical">&nbsp;</td>
                 </tr>
             </table>
-    </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
     </form>
 </body>
 </html>
