@@ -66,6 +66,9 @@ namespace ModeloEF
             if (unV.FechaLlegada < unV.FechaPartida)
                 throw new Exception("La fecha de llegada debe ser más lejana a la de partida");
 
+            if(unV.FechaPartida < DateTime.Today)
+                throw new Exception("La fecha de partida no es correcta");
+
             if (unV.Pasajeros > 50 || unV.Pasajeros < 1)
                 throw new Exception("La capacidad del ómnibus es de 50 personas.Debe haber por lo menos más de una persona por viaje");
 

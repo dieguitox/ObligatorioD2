@@ -56,13 +56,11 @@ public partial class AltaViajes : System.Web.UI.Page
             txtPartida.Text = "";
             txtPasajeros.Text = "";
             txtPrecio.Text = "";
-            ddlCompañía.SelectedIndex = -1;
-            ((List<Terminales>)Session["TerminalesGV"]).AddRange(((List<ViajeTerminal>)Session["TerminalesLB"]).Select(x => new Terminales { Codigo = x.Terminales.Codigo, Ciudad = x.Terminales.Ciudad }).ToList());
-            ((List<ViajeTerminal>)Session["TerminalesLB"]).Clear();
+            CargarComp();
+            CargarTerminales();
             lbTerminales.Items.Clear();
             GVTerminales.DataSource = Session["TerminalesGV"];
             GVTerminales.DataBind();
-            lblError.Text = "";
         }
         catch (Exception ex)
         {
@@ -80,11 +78,26 @@ public partial class AltaViajes : System.Web.UI.Page
             DateTime partida = Convert.ToDateTime(txtPartida.Text);
             DateTime llegada = Convert.ToDateTime(txtLlegada.Text);
             int anden = Convert.ToInt32(txtAnden.Text);
+            var ocupado = (from unV in ObContexto.Viajes.ToList()
+                           where unV.Anden == anden &&
+                           (unV.FechaPartida.Subtract(partida).TotalMinutes < 30 &&
+                           unV.FechaPartida.Subtract(partida).TotalMinutes > -30)
+                           select unV).Any();
+            
+            if (ocupado)
+            {
+                lblError.Text = "El anden esta ocupado.";
+                return;
+            }
+            
             decimal precio = Convert.ToDecimal(txtPrecio.Text);
             Empleados unEmp = (Empleados)Session["Usuario"];
             int pasajeros = Convert.ToInt32(txtPasajeros.Text);
             Companias comp = ((List<Companias>)Session["Companias"])[ddlCompañía.SelectedIndex - 1];
             List<ViajeTerminal> lista = (List<ViajeTerminal>)Session["TerminalesLB"];
+
+
+
             unViaje = new Viajes
             {
                 FechaPartida = partida,
