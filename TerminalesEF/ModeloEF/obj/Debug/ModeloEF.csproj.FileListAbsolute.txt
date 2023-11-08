@@ -1,0 +1,9 @@
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\ModeloEF.dll.config
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\EntityFramework.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\EntityFramework.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\obj\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Diseño II\TerminalesEF\ModeloEF\obj\Debug\ModeloEF.pdb
