@@ -27,7 +27,7 @@ public partial class EstadisticadeViaje : System.Web.UI.Page
 
         var listado2 = (from unV in ObContexto.Viajes.ToList()
                        group unV by new { comp = unV.Companias.NombreComp , anio = unV.FechaPartida.Year }
-                       into grupito
+                       into grupito orderby grupito.Key.comp,grupito.Key.anio
                        select new
                        {
                            Compañía = grupito.Key.comp,

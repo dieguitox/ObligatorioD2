@@ -12,23 +12,22 @@ using ModeloEF;
 
 public partial class AltaViajes : System.Web.UI.Page
 {
+    Obligatorio2Entities ObContexto = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
-
-            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
-
-            Session["TerminalesLB"] = new List<ViajeTerminal>();
+            ObContexto = (Obligatorio2Entities)Session["Contexto"];
             this.CargarComp();
-            this.CargarTerminales();
             Limpiar();
         }
     }
 
     public void CargarComp()
     {
-        Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
+        ObContexto = (Obligatorio2Entities)Session["Contexto"];
         Session["Companias"] = ObContexto.Companias.ToList();
 
         ddlCompañía.DataSource = Session["Companias"];
@@ -40,7 +39,7 @@ public partial class AltaViajes : System.Web.UI.Page
 
     public void CargarTerminales()
     {
-        Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
+        ObContexto = (Obligatorio2Entities)Session["Contexto"];
         Session["TerminalesGV"] = ObContexto.Terminales.ToList();
 
         GVTerminales.DataSource = Session["TerminalesGV"];
@@ -56,9 +55,10 @@ public partial class AltaViajes : System.Web.UI.Page
             txtPartida.Text = "";
             txtPasajeros.Text = "";
             txtPrecio.Text = "";
-            CargarComp();
             CargarTerminales();
+            ddlCompañía.SelectedIndex = -1;
             lbTerminales.Items.Clear();
+            Session["TerminalesLB"] = new List<ViajeTerminal>(); 
             GVTerminales.DataSource = Session["TerminalesGV"];
             GVTerminales.DataBind();
         }
@@ -70,8 +70,8 @@ public partial class AltaViajes : System.Web.UI.Page
 
     protected void btnCrearViaje_Click(object sender, EventArgs e)
     {
-        Obligatorio2Entities ObContexto = null;
         Viajes unViaje = null;
+        
         try
         {
             ObContexto = (Obligatorio2Entities)Session["Contexto"];
@@ -86,6 +86,7 @@ public partial class AltaViajes : System.Web.UI.Page
             
             if (ocupado)
             {
+                lblError.ForeColor = Color.Red;
                 lblError.Text = "El anden esta ocupado.";
                 return;
             }
@@ -95,8 +96,6 @@ public partial class AltaViajes : System.Web.UI.Page
             int pasajeros = Convert.ToInt32(txtPasajeros.Text);
             Companias comp = ((List<Companias>)Session["Companias"])[ddlCompañía.SelectedIndex - 1];
             List<ViajeTerminal> lista = (List<ViajeTerminal>)Session["TerminalesLB"];
-
-
 
             unViaje = new Viajes
             {
@@ -139,7 +138,7 @@ public partial class AltaViajes : System.Web.UI.Page
     {
         if (lbTerminales.SelectedIndex >= 0)
         {
-            var terminal = ((List<ViajeTerminal>)Session["TerminalesLB"])[lbTerminales.SelectedIndex];
+            ViajeTerminal terminal = ((List<ViajeTerminal>)Session["TerminalesLB"])[lbTerminales.SelectedIndex];
 
             for (int i = lbTerminales.SelectedIndex; i < lbTerminales.Items.Count - 1; i++)
                 ((List<ViajeTerminal>)Session["TerminalesLB"])[i + 1].NroParada -= 1;
@@ -167,7 +166,7 @@ public partial class AltaViajes : System.Web.UI.Page
     {
         try
         {
-            var terminal = ((List<Terminales>)Session["TerminalesGV"])[(e.NewSelectedIndex) + (GVTerminales.PageIndex * GVTerminales.PageSize)];
+            Terminales terminal = ((List<Terminales>)Session["TerminalesGV"])[(e.NewSelectedIndex) + (GVTerminales.PageIndex * GVTerminales.PageSize)];
             lbTerminales.Items.Add(terminal.Ciudad);
             ((List<ViajeTerminal>)Session["TerminalesLB"]).Add(new ViajeTerminal { Terminales = terminal, NroParada = lbTerminales.Items.Count });
             ((List<Terminales>)Session["TerminalesGV"]).Remove(terminal);

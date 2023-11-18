@@ -9,12 +9,13 @@ using ModeloEF;
 
 public partial class Listados : System.Web.UI.Page
 {
+    
+    static  Obligatorio2Entities ObContexto = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) 
         {
-
-            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
+            ObContexto = (Obligatorio2Entities)Session["Contexto"];
             Session["ViajesMes"] = ObContexto.Viajes.ToList();
             Session["Filtros"] = Session["ViajesMes"];
             CargarDdls();
@@ -32,14 +33,15 @@ public partial class Listados : System.Web.UI.Page
     {
         try
         {
-            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
 
-            var Destino = (from unV in ObContexto.Viajes
+            var destinos = (from unV in ObContexto.Viajes
                            from unD in unV.ViajeTerminal
-                           group unD by unD.Terminales.Ciudad into grupo
+                           group unD by new { ciudad = unD.Terminales.Ciudad, codigo = unD.Terminales.Codigo }
+                           into grupo
                            select new
                            {
-                               Ciudad = grupo.Key.ToString()
+                               Ciudad = grupo.Key.ciudad.ToString(),
+                               Codigo = grupo.Key.codigo.ToString()
                            }).ToList();
 
 
@@ -49,8 +51,9 @@ public partial class Listados : System.Web.UI.Page
             ddlCompania.DataBind();
             ddlCompania.Items.Insert(0, "Seleccionar");
 
-            ddlDestino.DataSource = Destino;
+            ddlDestino.DataSource = destinos;
             ddlDestino.DataTextField = "Ciudad";
+            ddlDestino.DataValueField = "Codigo";
             ddlDestino.DataBind();
             ddlDestino.Items.Insert(0, "Seleccionar");
 
@@ -66,8 +69,6 @@ public partial class Listados : System.Web.UI.Page
     {
         try
         {
-            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
-
             ddlCompania.SelectedIndex = -1;
             ddlDestino.SelectedIndex = -1;
             FechaCalendar.Text = DateTime.Today.ToShortDateString();
@@ -84,9 +85,9 @@ public partial class Listados : System.Web.UI.Page
     {
         try
         {
-            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
-
+       
             Session["Filtros"] = ObContexto.Viajes.ToList();
+
             if (ddlCompania.SelectedIndex != 0)
             {
                 Session["Filtros"] = (from unV in (List<Viajes>)Session["Filtros"]
@@ -97,7 +98,7 @@ public partial class Listados : System.Web.UI.Page
             if (ddlDestino.SelectedIndex != 0)
             {
                 Session["Filtros"] = (from unV in (List<Viajes>)Session["Filtros"]
-                                      where unV.ViajeTerminal.OrderByDescending(x => x.NroParada).FirstOrDefault().Terminales.Ciudad == ddlDestino.SelectedValue
+                                      where unV.ViajeTerminal.Last().CodigoTerminal == ddlDestino.SelectedValue
                                       select unV).ToList();
             }
 
@@ -108,7 +109,6 @@ public partial class Listados : System.Web.UI.Page
                                       select unV).ToList();
             }
 
-            var prueba = (List<Viajes>)Session["Filtros"];
             MostrarEnGrilla((List<Viajes>)Session["Filtros"]);
         }
         catch (Exception ex)
@@ -120,7 +120,6 @@ public partial class Listados : System.Web.UI.Page
     private void MostrarEnGrilla(List<Viajes> listadoViajes)
     {
 
-        
         var listadoViajesGrilla = (from unV in listadoViajes
                                    select new
                                    {

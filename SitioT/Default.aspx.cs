@@ -22,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
                 Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
 
                 Session["Usuario"] = null;
-                var listadoViajes = ObContexto.Viajes.Where(x => x.FechaPartida > DateTime.Now).ToList();
+                List<Viajes> listadoViajes = ObContexto.Viajes.Where(x => x.FechaPartida > DateTime.Now).ToList();
 
                 var listadoVM = (from unV in listadoViajes
                                  orderby unV.FechaPartida

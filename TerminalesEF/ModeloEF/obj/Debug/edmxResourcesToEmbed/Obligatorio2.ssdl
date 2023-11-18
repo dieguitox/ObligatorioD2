@@ -94,26 +94,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="AltaCompania" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nom" Type="varchar" Mode="In" />
-    <Parameter Name="dir" Type="varchar" Mode="In" />
-    <Parameter Name="tel" Type="varchar" Mode="In" />
-    <Parameter Name="ret" Type="int" Mode="InOut" />
-  </Function>
-  <Function Name="AltaTerminal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cod" Type="varchar" Mode="In" />
-    <Parameter Name="ciudad" Type="varchar" Mode="In" />
-    <Parameter Name="pais" Type="varchar" Mode="In" />
-    <Parameter Name="ret" Type="int" Mode="InOut" />
-  </Function>
-  <Function Name="EliminarCompania" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nom" Type="varchar" Mode="In" />
-    <Parameter Name="ret" Type="int" Mode="InOut" />
-  </Function>
-  <Function Name="EliminarTerminal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cod" Type="varchar" Mode="In" />
-    <Parameter Name="ret" Type="int" Mode="InOut" />
-  </Function>
   <EntityContainer Name="ObligatorioD2ModelStoreContainer">
     <EntitySet Name="Companias" EntityType="Self.Companias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
