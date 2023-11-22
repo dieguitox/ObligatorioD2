@@ -12,22 +12,21 @@ using ModeloEF;
 
 public partial class AltaViajes : System.Web.UI.Page
 {
-    Obligatorio2Entities ObContexto = null;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (!IsPostBack)
         {
-            ObContexto = (Obligatorio2Entities)Session["Contexto"];
+
+            Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
             this.CargarComp();
+            this.CargarTerminales();
             Limpiar();
         }
     }
 
     public void CargarComp()
     {
-        ObContexto = (Obligatorio2Entities)Session["Contexto"];
+        Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
         Session["Companias"] = ObContexto.Companias.ToList();
 
         ddlCompañía.DataSource = Session["Companias"];
@@ -39,7 +38,7 @@ public partial class AltaViajes : System.Web.UI.Page
 
     public void CargarTerminales()
     {
-        ObContexto = (Obligatorio2Entities)Session["Contexto"];
+        Obligatorio2Entities ObContexto = (Obligatorio2Entities)Session["Contexto"];
         Session["TerminalesGV"] = ObContexto.Terminales.ToList();
 
         GVTerminales.DataSource = Session["TerminalesGV"];
@@ -55,11 +54,12 @@ public partial class AltaViajes : System.Web.UI.Page
             txtPartida.Text = "";
             txtPasajeros.Text = "";
             txtPrecio.Text = "";
+            CargarComp();
             CargarTerminales();
-            ddlCompañía.SelectedIndex = -1;
             lbTerminales.Items.Clear();
-            Session["TerminalesLB"] = new List<ViajeTerminal>(); 
             GVTerminales.DataSource = Session["TerminalesGV"];
+            Session["Terminales"] = new List<Terminales>();
+            Session["TerminalesLB"] = new List<ViajeTerminal>();
             GVTerminales.DataBind();
         }
         catch (Exception ex)
@@ -70,8 +70,8 @@ public partial class AltaViajes : System.Web.UI.Page
 
     protected void btnCrearViaje_Click(object sender, EventArgs e)
     {
+        Obligatorio2Entities ObContexto = null;
         Viajes unViaje = null;
-        
         try
         {
             ObContexto = (Obligatorio2Entities)Session["Contexto"];
@@ -83,19 +83,20 @@ public partial class AltaViajes : System.Web.UI.Page
                            (unV.FechaPartida.Subtract(partida).TotalMinutes < 30 &&
                            unV.FechaPartida.Subtract(partida).TotalMinutes > -30)
                            select unV).Any();
-            
+
             if (ocupado)
             {
-                lblError.ForeColor = Color.Red;
                 lblError.Text = "El anden esta ocupado.";
                 return;
             }
-            
+
             decimal precio = Convert.ToDecimal(txtPrecio.Text);
             Empleados unEmp = (Empleados)Session["Usuario"];
             int pasajeros = Convert.ToInt32(txtPasajeros.Text);
             Companias comp = ((List<Companias>)Session["Companias"])[ddlCompañía.SelectedIndex - 1];
             List<ViajeTerminal> lista = (List<ViajeTerminal>)Session["TerminalesLB"];
+
+
 
             unViaje = new Viajes
             {
@@ -147,6 +148,7 @@ public partial class AltaViajes : System.Web.UI.Page
             lblError.Text = "Se elimino la terminal";
             ((List<Terminales>)Session["TerminalesGV"]).Add(terminal.Terminales);
             ((List<ViajeTerminal>)Session["TerminalesLB"]).Remove(terminal);
+            ((List<Terminales>)Session["Terminales"]).Remove(terminal.Terminales);
             GVTerminales.DataSource = Session["TerminalesGV"];
             GVTerminales.DataBind();
         }
@@ -166,12 +168,19 @@ public partial class AltaViajes : System.Web.UI.Page
     {
         try
         {
+
             Terminales terminal = ((List<Terminales>)Session["TerminalesGV"])[(e.NewSelectedIndex) + (GVTerminales.PageIndex * GVTerminales.PageSize)];
-            lbTerminales.Items.Add(terminal.Ciudad);
+            ((List<Terminales>)Session["Terminales"]).Add(terminal);
+
+            lbTerminales.DataSource = Session["Terminales"];
+            lbTerminales.DataTextField = "Ciudad";
+            lbTerminales.DataBind();
+
             ((List<ViajeTerminal>)Session["TerminalesLB"]).Add(new ViajeTerminal { Terminales = terminal, NroParada = lbTerminales.Items.Count });
             ((List<Terminales>)Session["TerminalesGV"]).Remove(terminal);
             GVTerminales.DataSource = Session["TerminalesGV"];
             GVTerminales.DataBind();
+
         }
         catch (Exception ex)
         {

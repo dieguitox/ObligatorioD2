@@ -126,7 +126,9 @@ public partial class Listados : System.Web.UI.Page
                                        Viaje = unV.CodigoInterno,
                                        FechaHora = unV.FechaPartida,
                                        Compañía = unV.Companias.NombreComp,
-                                       Destino = unV.ViajeTerminal.OrderByDescending(x => x.NroParada).FirstOrDefault().Terminales.Ciudad
+                                       Destino = (from unD in unV.ViajeTerminal
+                                                  orderby unD.NroParada descending
+                                                  select unD).First().Terminales.Ciudad
                                    }).ToList();
         GVViajes.DataSource = listadoViajesGrilla;
         GVViajes.DataBind();
