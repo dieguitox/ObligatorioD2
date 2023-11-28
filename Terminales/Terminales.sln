@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeloEF", "ModeloEF\ModeloEF.csproj", "{C336CE0A-57F0-438A-BABA-28C4FE264A84}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SitioT", "SitioT\", "{BC1158C4-A307-4915-BCFE-058508FB3075}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		ProjectReferences = "{c336ce0a-57f0-438a-baba-28c4fe264a84}|ModeloEF.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54474"
+		Debug.AspNetCompiler.PhysicalPath = "SitioT\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54474\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54474"
+		Release.AspNetCompiler.PhysicalPath = "SitioT\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54474\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54474"
+		SlnRelativePath = "SitioT\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C336CE0A-57F0-438A-BABA-28C4FE264A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C336CE0A-57F0-438A-BABA-28C4FE264A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C336CE0A-57F0-438A-BABA-28C4FE264A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C336CE0A-57F0-438A-BABA-28C4FE264A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1158C4-A307-4915-BCFE-058508FB3075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1158C4-A307-4915-BCFE-058508FB3075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1158C4-A307-4915-BCFE-058508FB3075}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1158C4-A307-4915-BCFE-058508FB3075}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

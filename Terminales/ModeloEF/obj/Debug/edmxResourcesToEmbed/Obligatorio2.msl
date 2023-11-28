@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ObligatorioD2ModelStoreContainer" CdmEntityContainer="ObligatorioD2Entities1">
+    <EntitySetMapping Name="Companias">
+      <EntityTypeMapping TypeName="ObligatorioD2Model.Companias">
+        <MappingFragment StoreEntitySet="Companias">
+          <ScalarProperty Name="NombreComp" ColumnName="NombreComp" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleados">
+      <EntityTypeMapping TypeName="ObligatorioD2Model.Empleados">
+        <MappingFragment StoreEntitySet="Empleados">
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terminales">
+      <EntityTypeMapping TypeName="ObligatorioD2Model.Terminales">
+        <MappingFragment StoreEntitySet="Terminales">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Viajes">
+      <EntityTypeMapping TypeName="ObligatorioD2Model.Viajes">
+        <MappingFragment StoreEntitySet="Viajes">
+          <ScalarProperty Name="CodigoInterno" ColumnName="CodigoInterno" />
+          <ScalarProperty Name="FechaPartida" ColumnName="FechaPartida" />
+          <ScalarProperty Name="FechaLlegada" ColumnName="FechaLlegada" />
+          <ScalarProperty Name="Pasajeros" ColumnName="Pasajeros" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Anden" ColumnName="Anden" />
+          <ScalarProperty Name="NombreComp" ColumnName="NombreComp" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViajeTerminal">
+      <EntityTypeMapping TypeName="ObligatorioD2Model.ViajeTerminal">
+        <MappingFragment StoreEntitySet="ViajeTerminal">
+          <ScalarProperty Name="CodigoInterno" ColumnName="CodigoInterno" />
+          <ScalarProperty Name="CodigoTerminal" ColumnName="CodigoTerminal" />
+          <ScalarProperty Name="NroParada" ColumnName="NroParada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AltaCompania" FunctionName="ObligatorioD2Model.Store.AltaCompania" />
+    <FunctionImportMapping FunctionImportName="AltaTerminal" FunctionName="ObligatorioD2Model.Store.AltaTerminal" />
+    <FunctionImportMapping FunctionImportName="EliminarCompania" FunctionName="ObligatorioD2Model.Store.EliminarCompania" />
+    <FunctionImportMapping FunctionImportName="EliminarTerminal" FunctionName="ObligatorioD2Model.Store.EliminarTerminal" />
+  </EntityContainerMapping>
+</Mapping>

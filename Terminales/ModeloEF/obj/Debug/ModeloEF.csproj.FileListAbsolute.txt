@@ -1,0 +1,10 @@
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\obj\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\obj\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\ModeloEF.dll.config
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\ModeloEF.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\ModeloEF.pdb
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\EntityFramework.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\EntityFramework.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Usuario\Desktop\Estudio\Bios\Obligatorios\Diseño 2\Terminales\ModeloEF\obj\Debug\ModeloEF.csprojResolveAssemblyReference.cache
